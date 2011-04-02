@@ -6,7 +6,7 @@
 ##########################################################
 
 class CreateCookie():
-	"Generate a Cookie using given Salt"
+	"Generate a Cookie using given name"
 	def __init__(self,NAME,HASH=""):
 		from Cookie import SimpleCookie
 		self.C = SimpleCookie()
@@ -28,7 +28,7 @@ class CreateCookie():
 		print self.C
 
 class GetCookie():
-	"Retrieve a lost Cookie or duplicate for another browser"
+	"Retrieve cookie value or generate one if can't find it by given name"
 	def __init__(self,NAME):
 		from Cookie import SimpleCookie
 		import os
@@ -48,7 +48,7 @@ class GetCookie():
 			CreateCookie(self.NAME)
 
 class CopyCookie():
-	"Make a duplicate cookie from existing hash"
+	"Make a duplicate cookie from existing hash to tack in another browser"
 	def __init__(self,NAME,HASH):
 		self.HASH = HASH
 		self.NAME = NAME
