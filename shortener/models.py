@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 import base62,hashlib
 
 
@@ -27,11 +28,8 @@ class url(models.Model):
 		# create the hash url from the longurl
 		self.hashurl = hashlib.sha1(self.longurl).hexdigest()
 		if url.objects.filter(hashurl=self.hashurl):
-			def __unicode__(self):
-				return u"Url already available at %s" %(str(url.objects.get(hashurl=self.hashurl).shorturl))
+			raise ValidationError("Url already available at %s" %(str(url.objects.get(hashurl=self.hashurl).shorturl)))
 		else:
 			super(url, self).save(*args, **kwargs)
 			# create the shorturl now that we can get an id (post insert) 
 			self.createShortURL()
-			def __unicode__(self):
-				return u"%s ==> %s" %(self.longurl,self.shorturl)
