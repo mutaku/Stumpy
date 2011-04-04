@@ -7,4 +7,3 @@ class urlAdmin(admin.ModelAdmin):
 	date_hierarchy = 'created'
 
 admin.site.register(url,urlAdmin)
-
