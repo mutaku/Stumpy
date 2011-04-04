@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 import base62,hashlib
 
 
-class url(models.Model):
+class stumps(models.Model):
 	"database layout for storing the urls"
 	longurl = models.URLField("Original URL",help_text="URL for shortening",max_length=2000,verify_exists=True)
 	hashurl = models.CharField("Hash of original URL",max_length=70,editable=False,unique=True)
@@ -13,7 +13,7 @@ class url(models.Model):
 		thisentry = url.objects.get(longurl=thisurl)
 		theid = thisentry.id
 		theshorty = base62.encode(theid)
-		url.objects.filter(id=theid).update(shorturl=theshorty)
+		stumps.objects.filter(id=theid).update(shorturl=theshorty)
 	shorturl = models.CharField("Shortened URL",max_length=15,null=True,blank=True,editable=False,unique=True)
 	hits = models.PositiveIntegerField("Number of visits",default=1,editable=False)
 	lastvisit = models.DateTimeField("Last visit timestamp",auto_now_add=True,editable=False,)
@@ -23,7 +23,7 @@ class url(models.Model):
 		return u"%s ==> %s [created:%s | visits:%s | lastvisit:%s | associated cookie:%s ]" %(self.longurl,self.shorturl,self.created,self.hits,self.lastvisit,self.cookie) 
 	# override the default save to create some callable functions
 	def save(self, *args, **kwargs):
-		super(url, self).save(*args, **kwargs)
+		super(stumps, self).save(*args, **kwargs)
 		# create the shorturl now that we can get an id (post insert) 
 		if not self.shorturl:
 			self.createShortURL()
