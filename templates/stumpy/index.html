@@ -1,3 +1,11 @@
+<head>
+	<title>Stumpy</title>
+</head>
+
+{% autoescape on %}
+
+<body>
+
 {% if stumps_list %}
     <ul>
     {% for stump in stumps_list %}
@@ -7,3 +15,7 @@
 {% else %}
     <p>No stumps are available.</p>
 {% endif %}
+
+</body>
+
+{% endautoescape %}
