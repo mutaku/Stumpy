@@ -1,0 +1,9 @@
+{% if stumps_list %}
+    <ul>
+    {% for stump in stumps_list %}
+        <li><a href="/{{ stump.shorturl }}/">{{ stump.longurl }} ==> {{ stump.shorturl }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No stumps are available.</p>
+{% endif %}
