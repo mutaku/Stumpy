@@ -10,7 +10,7 @@ class stumps(models.Model):
 	# creating the short url
 	def createShortURL(self):
 		thisurl = self.longurl
-		thisentry = url.objects.get(longurl=thisurl)
+		thisentry = stumps.objects.get(longurl=thisurl)
 		theid = thisentry.id
 		theshorty = base62.encode(theid)
 		stumps.objects.filter(id=theid).update(shorturl=theshorty)
