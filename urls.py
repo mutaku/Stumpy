@@ -9,12 +9,11 @@ urlpatterns = patterns('',
     # url(r'^$', 'Stumpy.views.home', name='home'),
     # url(r'^Stumpy/', include('Stumpy.foo.urls')),
     
-    # show the index
+    # show the index from /
     url(r'^$', 'shortener.views.index'),
-    # get a url for redirection
+    # get a url for redirection /shorty
     url(r'^(?P<short>\w+)/$', 'shortener.views.detail'),
-    # send a url to be shortened
-    #url(r'^Stumpy/u/(?P<url>\S+)/$', 'shortener.views.submit'),
+    # send a url to be shortened from /url/someencodedurl
     url(r'^url/(?P<url>\S+)/$', 'shortener.views.submit'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
