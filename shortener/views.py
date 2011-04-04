@@ -8,7 +8,10 @@ def index(request):
 
 
 def detail(request,short):
-	fullurl = url.objects.get(shorturl=short).longurl
+	thisurl = url.objects.get(shorturl=short)
+	fullurl = thisurl.longurl	
+	thisurl.hits += 1
+	thisurl.save()
 	return HttpResponse("You use short link %s which is translating to %s" % (short,fullurl))
 
 def submit(request,url):

@@ -6,7 +6,7 @@ import base62,hashlib
 class url(models.Model):
 	"database layout for storing the urls and statistics"
 	longurl = models.URLField("Original URL",help_text="URL for shortening",max_length=2000,verify_exists=True)
-	hashurl = models.CharField("Hash of original URL",max_length=70,null=True,blank=True,editable=False)
+	hashurl = models.CharField("Hash of original URL",max_length=70,null=True,blank=True,editable=False,unique=True)
 	# creating the short url
 	def createShortURL(self):
 		thisurl = self.longurl
@@ -14,7 +14,7 @@ class url(models.Model):
 		theid = thisentry.id
 		theshorty = base62.encode(theid)
 		url.objects.filter(id=theid).update(shorturl=theshorty)
-	shorturl = models.CharField("Shortened URL",max_length=15,null=True,blank=True,editable=False)
+	shorturl = models.CharField("Shortened URL",max_length=15,null=True,blank=True,editable=False,unique=True)
 	hits = models.PositiveIntegerField("Number of visits",default=1,editable=False)
 	created = models.DateTimeField("Created timestamp",auto_now=True,editable=False)
 	lastvisit = models.DateTimeField("Last visit timestamp",auto_now_add=True,editable=False,)
@@ -27,9 +27,13 @@ class url(models.Model):
 		self.shorturl = "EMPTY"
 		# create the hash url from the longurl
 		self.hashurl = hashlib.sha1(self.longurl).hexdigest()
-		if url.objects.filter(hashurl=self.hashurl):
-			raise ValidationError("Url already available at %s" %(str(url.objects.get(hashurl=self.hashurl).shorturl)))
-		else:
-			super(url, self).save(*args, **kwargs)
-			# create the shorturl now that we can get an id (post insert) 
-			self.createShortURL()
+		# The following is commented out because we can use unique=True but we might want to use somehow to show where the dupe is already located at for the user
+		#if url.objects.filter(hashurl=self.hashurl):
+		#	raise ValidationError("Url already available at %s" %(str(url.objects.get(hashurl=self.hashurl).shorturl)))
+		#else:
+		#	super(url, self).save(*args, **kwargs)
+		#	# create the shorturl now that we can get an id (post insert) 
+		#	self.createShortURL()
+		super(url, self).save(*args, **kwargs)
+		# create the shorturl now that we can get an id (post insert) 
+		self.createShortURL()
