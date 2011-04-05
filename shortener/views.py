@@ -4,12 +4,17 @@ from shortener.models import stumps
 from django.utils.encoding import smart_str
 from django.shortcuts import get_object_or_404,get_list_or_404,render_to_response,redirect
 import hashlib
+import urlparse
+from django.db.models import Sum,Count
 
 def index(request):
-	stumps_list = stumps.objects.all().order_by('-created')[:5]
+	stump_stats_num = stumps.objects.aggregate(Count('id'))['%s__count' % 'id']
+	stump_stats_visits = stumps.objects.aggregate(Sum('hits'))['%s__sum' % 'hits']
+	recent_stumps_list = stumps.objects.all().order_by('-created')[:5]
+	famous_stumps_list = stumps.objects.all().order_by('-hits')[:5]
 	# like this way better but doesnt work this way
 	#stumps_list = get_list_or_404(stumps).order_by('-created')[:5]
-	return render_to_response('stumpy/index.html', {'stumps_list': stumps_list})	
+	return render_to_response('stumpy/index.html', {'recent_stumps_list': recent_stumps_list, 'famous_stumps_list': famous_stumps_list,'stump_stats_num': stump_stats_num,'stump_stats_visits': stump_stats_visits})	
 
 def detail(request,short):
 	thisurl = get_object_or_404(stumps,shorturl=short)
@@ -24,12 +29,16 @@ def detail(request,short):
 def submit(request,stump):
 	try:
 		a = smart_str(stump)
-		b = hashlib.sha1(a).hexdigest()
-		c = stumps(longurl=a,hashurl=b)
-		c.save()
-		thisid = c.id	
-		short = stumps.objects.get(id=thisid).shorturl
-		long = stumps.objects.get(id=thisid).longurl 
-		return HttpResponse("Added %s ==> %s" % (long,short))
+		parsedurl = urlparse.urlparse(a)
+		if parsedurl.netloc != "t04u.be":
+			b = hashlib.sha1(a).hexdigest()
+			c = stumps(longurl=a,hashurl=b)
+			c.save()
+			thisid = c.id	
+			short = stumps.objects.get(id=thisid).shorturl
+			long = stumps.objects.get(id=thisid).longurl 
+			return HttpResponse("Added %s ==> %s" % (long,short))
+		else:
+			return HttpResponse("Sly fox eats the poisoned rabbit.")
 	except:
 		raise Http404
