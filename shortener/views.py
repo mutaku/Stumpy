@@ -38,9 +38,9 @@ def submit(request,stump):
 			c = stumps(longurl=a,hashurl=b)
 			c.save()
 			thisid = c.id	
-			short = stumps.objects.get(id=thisid).shorturl
-			long = stumps.objects.get(id=thisid).longurl 
-			return HttpResponse("Added %s ==> %s" % (long,short))
+			newstump = stumps.objects.get(id=thisid)
+			stumpy_domain = smart_str(Site.objects.get_current().domain)
+			return render_to_response('stumpy/submit.html', {'newstump': newstump,'stumpy_domain': stumpy_domain})
 		else:
 			return HttpResponse("Sly fox eats the poisoned rabbit.")
 	except:
