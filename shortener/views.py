@@ -6,15 +6,17 @@ from django.shortcuts import get_object_or_404,get_list_or_404,render_to_respons
 import hashlib
 import urlparse
 from django.db.models import Sum,Count
+from django.contrib.sites.models import Site
 
 def index(request):
+	stumpy_domain = smart_str(Site.objects.get_current().domain)
 	stump_stats_num = stumps.objects.aggregate(Count('id'))['%s__count' % 'id']
 	stump_stats_visits = stumps.objects.aggregate(Sum('hits'))['%s__sum' % 'hits']
 	recent_stumps_list = stumps.objects.all().order_by('-created')[:5]
 	famous_stumps_list = stumps.objects.all().order_by('-hits')[:5]
 	# like this way better but doesnt work this way
 	#stumps_list = get_list_or_404(stumps).order_by('-created')[:5]
-	return render_to_response('stumpy/index.html', {'recent_stumps_list': recent_stumps_list, 'famous_stumps_list': famous_stumps_list,'stump_stats_num': stump_stats_num,'stump_stats_visits': stump_stats_visits})	
+	return render_to_response('stumpy/index.html', {'stumpy_domain': stumpy_domain,'recent_stumps_list': recent_stumps_list, 'famous_stumps_list': famous_stumps_list,'stump_stats_num': stump_stats_num,'stump_stats_visits': stump_stats_visits})	
 
 def detail(request,short):
 	thisurl = get_object_or_404(stumps,shorturl=short)
@@ -30,7 +32,8 @@ def submit(request,stump):
 	try:
 		a = smart_str(stump)
 		parsedurl = urlparse.urlparse(a)
-		if parsedurl.netloc != "t04u.be":
+		stumpydomain = smart_str(Site.objects.get_current().domain)
+		if parsedurl.netloc != stumpydomain:
 			b = hashlib.sha1(a).hexdigest()
 			c = stumps(longurl=a,hashurl=b)
 			c.save()
