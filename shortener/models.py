@@ -27,3 +27,10 @@ class stumps(models.Model):
 		# create the shorturl now that we can get an id (post insert) 
 		if not self.shorturl:
 			self.createShortURL()
+	# callable to spit back a shorter form of the long url (for display purposes only)
+        def long_to_less_long(self):
+                if len(self.longurl)>50:
+                        return self.longurl[:50]+"..."
+                else:
+                        return self.longurl
+

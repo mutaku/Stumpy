@@ -44,7 +44,7 @@
     <p class=lister> fresh cut stumps</p>
     <ul>
     {% for stump in recent_stumps_list %}
-        <li><a target=_blank href="/{{ stump.shorturl }}/">{{ stumpy_domain }}/{{ stump.shorturl }}</a>  <span>{{ stump.long_to_less_long }}</span></li>
+        <li><a target=_blank href="/{{ stump.shorturl }}/">{{ stump.shorturl }}</a>  <span>{{ stump.longurl }}</span></li>
     {% endfor %}
     </ul>
 {% else %}
@@ -55,7 +55,7 @@
     <p class=lister> famous stumps in history</p>
     <ul>
     {% for stump in famous_stumps_list %}
-        <li><a target=_blank href="/{{ stump.shorturl }}/">{{ stumpy_domain }}/{{ stump.shorturl }}</a> <span>{{ stump.hits }}</span> <span>{{ stump.long_to_less_long }}</span></li>
+        <li><a target=_blank href="/{{ stump.shorturl }}/">{{ stump.shorturl }}</a> <span>{{ stump.hits }}</span> <span>{{ stump.longurl }}</span></li>
     {% endfor %}
     </ul>
 {% else %}
