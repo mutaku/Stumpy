@@ -14,7 +14,7 @@ class stumps(models.Model):
 		theid = thisentry.id
 		theshorty = base62.encode(theid)
 		stumps.objects.filter(id=theid).update(shorturl=theshorty)
-	shorturl = models.CharField("Shortened URL",max_length=15,null=True,blank=True,editable=False,unique=True)
+	shorturl = models.CharField("Shortened URL",max_length=15,null=True,blank=True,editable=False)
 	hits = models.PositiveIntegerField("Number of visits",default=1,editable=False)
 	lastvisit = models.DateTimeField("Last visit timestamp",auto_now_add=True,editable=False,)
 	created = models.DateTimeField("Created timestamp",auto_now=True,editable=False)
