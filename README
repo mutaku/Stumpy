@@ -1,4 +1,36 @@
-Stumpy
+STUMPy
   Mutaku URL Shortener
 
 [BEING CONVERTED TO USE DJANGO]
+
+
+WHAT IS STUMPY?
+STUMPy is a URL shortener written by xiao_haozi (Mutaku) using the django python web framework.
+
+
+WHY STUMPY?
+There are man url shorteners out there, and STUMPy does not do anything groundbreaking.
+However, there are several benefits that encouraged it's development:
+  - you keep all the data and can access it at your will
+  - you keep all the code and can access/change it at your will
+  - simple to use, simple to run, and simple code
+  - because of it's simplicity, it is easy to understand how url shorteners work and some of the possible optimizations
+  - uses the django framework which allows for easy expansion, management, and tweaking
+  - django also allows for a nice web UI for administration of all of the data
+
+
+INSTALLATION:
+[coming soon]
+
+RUNNING:
+[coming soon]
+
+NOTES:
+A bookmarklet is ready to use and can be found by visiting the index page ("/") and dragging the 'stumpy it!' link to your bookmarks bar.
+
+
+FAQ:
+[coming soon]
+
+HELP:
+[coming soon]
