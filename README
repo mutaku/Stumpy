@@ -1,7 +1,6 @@
 STUMPy
   Mutaku URL Shortener
 
-[BEING CONVERTED TO USE DJANGO]
 
 
 WHAT IS STUMPY?
@@ -19,11 +18,20 @@ However, there are several benefits that encouraged it's development:
   - django also allows for a nice web UI for administration of all of the data
 
 
-INSTALLATION:
-[coming soon]
+INSTALLATION AND TESTING:
+See: http://docs.djangoproject.com/en/1.3/intro/install/
+Once you have django installed and running, you can checkout the repo and get going in three steps:
+  1 - Setup a mysql database that stumpy can access.
+	> create database stumpy;
+	> grant all on stumpy.* to SOMEUSER@localhost identified by "SOMEPASS";
+	> flush privilieges;
+  2 - Edit the settings.py file and add in your appropriate database variables.
+  3 - Fire up the server [python manage.py runserver] and navigate to /admin in your browser. Go to sites->sites and edit the domain name to match the domain you are using. This will initially be set to 'example.com'.
 
-RUNNING:
-[coming soon]
+
+PRODUCTION RUNNING:
+See: http://docs.djangoproject.com/en/1.3/howto/deployment/
+
 
 NOTES:
 A bookmarklet is ready to use and can be found by visiting the index page ("/") and dragging the 'stumpy it!' link to your bookmarks bar.
