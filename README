@@ -22,10 +22,10 @@ REQUIREMENTS:
 
 {requirement [package way to install]}
 
-- Python [sudo apt-get install python]
+- Python [http://www.python.org/getit/]
 - Django [see: http://docs.djangoproject.com/en/1.3/intro/install/]
-- HTML5LIB [sudo apt-get install python-setuptools && sudo python easy_install html5lib]
-- Bleach **this is already included cloned in the Stumpy repository so no installation necessary
+- HTML5LIB [http://code.google.com/p/html5lib/]
+- Bleach [https://github.com/jsocol/bleach]
 
 
 INSTALLATION AND TESTING:
