@@ -26,8 +26,6 @@ def index(request):
 		'stump_stats_visits': stump_stats_visits
 	})	
 
-# for now we just use this for testing - we don't want to inhibit url redirects for users because that defeats purpose
-@login_required
 def detail(request,short):
 	short_clean = bleach.clean(short)
 	stump = get_object_or_404(stumps,shorturl=short_clean)
@@ -38,7 +36,6 @@ def detail(request,short):
 	# this is the redirect to be used
 	#return redirect(stump.longurl)
 
-# want login_required here to limit the submissions and so we can tag submissions to user names
 @login_required
 def submit(request,stump):
 	# if having issues, take out of this try statement so it will spit out actual errors
