@@ -17,7 +17,13 @@ def index(request):
 	famous_stumps_list = stumps.objects.all().order_by('-hits')[:5]
 	# like this way better but doesnt work this way
 	#stumps_list = get_list_or_404(stumps).order_by('-created')[:5]
-	return render_to_response('stumpy/index.html', {'stumpy_domain': stumpy_domain,'recent_stumps_list': recent_stumps_list, 'famous_stumps_list': famous_stumps_list,'stump_stats_num': stump_stats_num,'stump_stats_visits': stump_stats_visits})	
+	return render_to_response('stumpy/index.html', {
+		'stumpy_domain': stumpy_domain,
+		'recent_stumps_list': recent_stumps_list, 
+		'famous_stumps_list': famous_stumps_list,
+		'stump_stats_num': stump_stats_num,
+		'stump_stats_visits': stump_stats_visits
+	})	
 
 # for now we just use this for testing - we don't want to inhibit url redirects for users because that defeats purpose
 @login_required
@@ -46,7 +52,10 @@ def submit(request,stump):
 			thisid = c.id	
 			newstump = stumps.objects.get(id=thisid)
 			stumpy_domain = smart_str(Site.objects.get_current().domain)
-			return render_to_response('stumpy/submit.html', {'newstump': newstump,'stumpy_domain': stumpy_domain})
+			return render_to_response('stumpy/submit.html', {
+				'newstump': newstump,
+				'stumpy_domain': stumpy_domain
+			})
 		else:
 			return HttpResponse("Sly fox eats the poisoned rabbit.")
 	except:
