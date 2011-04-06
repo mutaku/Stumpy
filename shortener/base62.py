@@ -6,6 +6,7 @@
 class Encode():
 	"""
 	Encode a number to Base62 using master string
+		base62.Encode(12).string will result in string "b"
 		encoded_string = base62.Encode(4).string
 	"""
 	def __init__(self,num):
@@ -28,6 +29,7 @@ class Encode():
 class Decode():
 	"""
 	Decode a base62 encoded string to a number
+		base62.Decode("b").num will result in integer 12
 		decoded_int = base62.Decode("3D").num
 	"""
 	def __init__(self,string):
