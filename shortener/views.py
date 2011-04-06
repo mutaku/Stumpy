@@ -16,8 +16,6 @@ def index(request):
 	stump_stats_visits = stumps.objects.aggregate(Sum('hits'))['%s__sum' % 'hits']
 	recent_stumps_list = stumps.objects.all().order_by('-id')[:5]
 	famous_stumps_list = stumps.objects.all().order_by('-hits')[:5]
-	# like this way better but doesnt work this way
-	#stumps_list = get_list_or_404(stumps).order_by('-created')[:5]
 	return render_to_response('stumpy/index.html', {
 		'stumpy_domain': stumpy_domain,
 		'recent_stumps_list': recent_stumps_list, 
@@ -38,7 +36,6 @@ def detail(request,short):
 
 @login_required
 def submit(request,stump):
-	# if having issues, take out of this try statement so it will spit out actual errors
 	try:
 		stump_clean = bleach.clean(stump)
 		this_stump = smart_str(stump_clean)
