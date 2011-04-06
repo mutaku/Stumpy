@@ -8,6 +8,7 @@ import urlparse
 from django.db.models import Sum,Count
 from django.contrib.sites.models import Site
 from django.contrib.auth.decorators import login_required
+import bleach
 
 def index(request):
 	stumpy_domain = smart_str(Site.objects.get_current().domain)
@@ -28,7 +29,8 @@ def index(request):
 # for now we just use this for testing - we don't want to inhibit url redirects for users because that defeats purpose
 @login_required
 def detail(request,short):
-	thisurl = get_object_or_404(stumps,shorturl=short)
+	short_clean = bleach.clean(short)
+	thisurl = get_object_or_404(stumps,shorturl=short_clean)
 	fullurl = thisurl.longurl	
 	thisurl.hits += 1
 	thisurl.save()
@@ -41,19 +43,20 @@ def detail(request,short):
 @login_required
 def submit(request,stump):
 	try:
-		a = smart_str(stump)
-		thisuser = smart_str(request.user)
-		parsedurl = urlparse.urlparse(a)
-		stumpydomain = smart_str(Site.objects.get_current().domain)
-		if parsedurl.netloc != stumpydomain:
-			b = hashlib.sha1(a).hexdigest()
-			c = stumps(longurl=a,hashurl=b,cookie=thisuser)
-			c.save()
-			thisid = c.id	
-			newstump = stumps.objects.get(id=thisid)
+		stump_clean = bleach.clean(stump)
+		this_stump = smart_str(stump_clean)
+		this_user = smart_str(request.user)
+		parsed_url = urlparse.urlparse(this_stump)
+		stumpy_domain = smart_str(Site.objects.get_current().domain)
+		if parsed_url.netloc != stumpy_domain:
+			this_hash = hashlib.sha1(a).hexdigest()
+			s = stumps(longurl=this_stump,hashurl=this_hash,cookie=this_user)
+			s.save()
+			this_id = s.id	
+			new_stump = stumps.objects.get(id=this_id)
 			stumpy_domain = smart_str(Site.objects.get_current().domain)
 			return render_to_response('stumpy/submit.html', {
-				'newstump': newstump,
+				'new_stump': new_stump,
 				'stumpy_domain': stumpy_domain
 			})
 		else:
