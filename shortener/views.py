@@ -19,6 +19,7 @@ def index(request):
 	#stumps_list = get_list_or_404(stumps).order_by('-created')[:5]
 	return render_to_response('stumpy/index.html', {'stumpy_domain': stumpy_domain,'recent_stumps_list': recent_stumps_list, 'famous_stumps_list': famous_stumps_list,'stump_stats_num': stump_stats_num,'stump_stats_visits': stump_stats_visits})	
 
+# for now we just use this for testing - we don't want to inhibit url redirects for users because that defeats purpose
 @login_required
 def detail(request,short):
 	thisurl = get_object_or_404(stumps,shorturl=short)
@@ -30,6 +31,7 @@ def detail(request,short):
 	# this is the redirect to be used
 	#return redirect(fullurl)
 
+# want login_required here to limit the submissions and so we can tag submissions to user names
 #@login_required(login_url='/accounts/login/')
 def submit(request,stump):
 	try:
