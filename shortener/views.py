@@ -32,15 +32,16 @@ def detail(request,short):
 	#return redirect(fullurl)
 
 # want login_required here to limit the submissions and so we can tag submissions to user names
-#@login_required(login_url='/accounts/login/')
+@login_required
 def submit(request,stump):
 	try:
 		a = smart_str(stump)
+		thisuser = smart_str(request.user)
 		parsedurl = urlparse.urlparse(a)
 		stumpydomain = smart_str(Site.objects.get_current().domain)
 		if parsedurl.netloc != stumpydomain:
 			b = hashlib.sha1(a).hexdigest()
-			c = stumps(longurl=a,hashurl=b)
+			c = stumps(longurl=a,hashurl=b,cookie=thisuser)
 			c.save()
 			thisid = c.id	
 			newstump = stumps.objects.get(id=thisid)
