@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 
+{% block content %}
+
 {% if newstump %}
     <p class=lister>Your stump is now available at <a target=_blank href="/{{ newstump.shorturl }}/">{{ stumpy_domain }}/{{ newstump.shorturl }}</a></span></p>
 {% else %}
     <p>Oops.</p>
 {% endif %}
 
+{% endblock %}
