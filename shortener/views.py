@@ -7,6 +7,7 @@ import hashlib
 import urlparse
 from django.db.models import Sum,Count
 from django.contrib.sites.models import Site
+from django.contrib.auth.decorators import login_required
 
 def index(request):
 	stumpy_domain = smart_str(Site.objects.get_current().domain)
@@ -28,6 +29,7 @@ def detail(request,short):
 	# this is the redirect to be used
 	#return redirect(fullurl)
 
+@login_required(login_url='/accounts/login/')
 def submit(request,stump):
 	try:
 		a = smart_str(stump)
