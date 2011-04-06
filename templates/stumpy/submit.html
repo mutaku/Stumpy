@@ -1,16 +1,4 @@
-<head>
-	<title>Stumpy | A Mutaku URL shortener by xiao_haozi</title>
-	<link rel='icon' type='image/png' href='/static/favicon.ico'>
-	<style>
-		p.result {color:gray;font-size:14px;}
-		a,a.visited {text-decoration:none;font-weight:bold;}
-	</style>
-</head>
-
-{% autoescape on %}
-
-<body>
-
+{% extends "base.html" %}
 
 {% if newstump %}
     <p class=lister>Your stump is now available at <a target=_blank href="/{{ newstump.shorturl }}/">{{ stumpy_domain }}/{{ newstump.shorturl }}</a></span></p>
@@ -18,6 +6,3 @@
     <p>Oops.</p>
 {% endif %}
 
-</body>
-
-{% endautoescape %}
