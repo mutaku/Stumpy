@@ -19,6 +19,7 @@ def index(request):
 	#stumps_list = get_list_or_404(stumps).order_by('-created')[:5]
 	return render_to_response('stumpy/index.html', {'stumpy_domain': stumpy_domain,'recent_stumps_list': recent_stumps_list, 'famous_stumps_list': famous_stumps_list,'stump_stats_num': stump_stats_num,'stump_stats_visits': stump_stats_visits})	
 
+@login_required
 def detail(request,short):
 	thisurl = get_object_or_404(stumps,shorturl=short)
 	fullurl = thisurl.longurl	
@@ -29,7 +30,7 @@ def detail(request,short):
 	# this is the redirect to be used
 	#return redirect(fullurl)
 
-@login_required(login_url='/accounts/login/')
+#@login_required(login_url='/accounts/login/')
 def submit(request,stump):
 	try:
 		a = smart_str(stump)
