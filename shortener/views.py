@@ -41,6 +41,7 @@ def detail(request,short):
 # want login_required here to limit the submissions and so we can tag submissions to user names
 @login_required
 def submit(request,stump):
+	# if having issues, take out of this try statement so it will spit out actual errors
 	try:
 		stump_clean = bleach.clean(stump)
 		this_stump = smart_str(stump_clean)
@@ -48,11 +49,10 @@ def submit(request,stump):
 		parsed_url = urlparse.urlparse(this_stump)
 		stumpy_domain = smart_str(Site.objects.get_current().domain)
 		if parsed_url.netloc != stumpy_domain:
-			this_hash = hashlib.sha1(a).hexdigest()
+			this_hash = hashlib.sha1(this_stump).hexdigest()
 			s = stumps(longurl=this_stump,hashurl=this_hash,cookie=this_user)
 			s.save()
-			this_id = s.id	
-			new_stump = stumps.objects.get(id=this_id)
+			new_stump = stumps.objects.get(id=s.id)	
 			stumpy_domain = smart_str(Site.objects.get_current().domain)
 			return render_to_response('stumpy/submit.html', {
 				'new_stump': new_stump,
