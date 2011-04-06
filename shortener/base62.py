@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-# encoding and decoding base62
-# based on an example here: http://stackoverflow.com/questions/1119722/base-62-conversion-in-python/1119769#1119769
 
 class Encode():
 	"""
