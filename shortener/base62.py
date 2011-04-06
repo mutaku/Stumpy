@@ -3,7 +3,7 @@
 # encoding and decoding base62
 # based on an example here: http://stackoverflow.com/questions/1119722/base-62-conversion-in-python/1119769#1119769
 
-class encode():
+class Encode():
 	"""
 	Encode a number to Base62 using master string
 		encoded_string = base62.encode(4).string
@@ -25,7 +25,7 @@ class encode():
 		self.build_string.reverse()
 		self.string = ''.join(self.build_string)
 
-class decode():
+class Decode():
 	"""
 	Decode a base62 encoded string to a number
 		decoded_int = base62.decode("3D").num

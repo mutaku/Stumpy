@@ -12,7 +12,7 @@ class stumps(models.Model):
 		thisurl = self.longurl
 		thisentry = stumps.objects.get(longurl=thisurl)
 		theid = thisentry.id
-		theshorty = base62.encode(theid).string
+		theshorty = base62.Encode(theid).string
 		stumps.objects.filter(id=theid).update(shorturl=theshorty)
 	shorturl = models.CharField("Shortened URL",max_length=15,null=True,blank=True,editable=False)
 	hits = models.PositiveIntegerField("Number of visits",default=1,editable=False)
