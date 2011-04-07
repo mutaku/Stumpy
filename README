@@ -43,6 +43,17 @@ PRODUCTION RUNNING:
 See: http://docs.djangoproject.com/en/1.3/howto/deployment/
 
 
+USAGE:
+You will probably be able to see from the urls.py how to go about using Stumpy. Here's the rundown:
+[site]/ 		->	index view (recent stumps, popular stumps, and the bookmarklet)
+[site]/[shorturl] 	->	grab shorturl and redirect
+[site]/register		->	register new user [for users - admin can add through admin interface]
+[site]/admin 		*->	admin interface 
+[site]/url/[longurl] 	*->	shorten url [this is how the bookmarklet does it] [needs to be escaped if not using bookmarklet]
+
+*-> These views require authenticated_user and uses sessions
+
+
 NOTES:
 A bookmarklet is ready to use and can be found by visiting the index page ("/") and dragging the 'stumpy it!' link to your bookmarks bar.
 
