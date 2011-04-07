@@ -3,6 +3,10 @@ from django.core.exceptions import ValidationError
 import base62,hashlib
 
 
+class Chainsaw(models.Manager):
+	def cookie_count(self,term):
+		return self.filter(cookie__icontains=term).count()
+
 class stumps(models.Model):
 	"database layout for storing the urls"
 	longurl = models.URLField("Original URL",help_text="URL for shortening",max_length=2000,verify_exists=True)
@@ -19,6 +23,7 @@ class stumps(models.Model):
 	lastvisit = models.DateTimeField("Last visit timestamp",auto_now_add=True,editable=False,)
 	created = models.DateTimeField("Created timestamp",auto_now=True,editable=False)
 	cookie = models.CharField("Associated cookie",max_length=10,null=True,blank=True,editable=False)
+	objects = Chainsaw()
 	def __unicode__(self):
 		return u"%s ==> %s [created:%s | visits:%s | lastvisit:%s | associated cookie:%s ]" %(self.longurl,self.shorturl,self.created,self.hits,self.lastvisit,self.cookie) 
 	# override the default save to create some callable functions

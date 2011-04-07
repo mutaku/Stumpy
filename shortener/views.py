@@ -12,7 +12,7 @@ import bleach
 
 def index(request):
 	stumpy_domain = smart_str(Site.objects.get_current().domain)
-	stump_stats_num = stumps.objects.aggregate(Count('id'))['%s__count' % 'id']
+	stump_stats_num = stumps.objects.all().count()
 	stump_stats_visits = stumps.objects.aggregate(Sum('hits'))['%s__sum' % 'hits']
 	recent_stumps_list = stumps.objects.all().order_by('-id')[:5]
 	famous_stumps_list = stumps.objects.all().order_by('-hits')[:5]
