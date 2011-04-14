@@ -3,8 +3,12 @@
 {% block content %}
 
 {% if new_stump %}
-    <p class=lister>Your stump is now available at <a target=_blank href="/{{ new_stump.shorturl }}/">{{ stumpy_domain }}/{{ new_stump.shorturl }}</a></span></p>
-{% else %}
+    <p class=returnurl>Your stump is now available at <a target=_blank href="/{{ new_stump.shorturl }}/">{{ stumpy_domain }}/{{ new_stump.shorturl }}</a></span></p>
+{% endif %}
+{% if exist_stump %}
+    <p class=returnurl>Your stump is already available at <a target=_blank href="/{{ exist_stump.shorturl }}/">{{ stumpy_domain }}/{{ exist_stump.shorturl }}</a></span></p>
+{% endif %}
+{% if not new_stump and not exist_stump %}
     <p>Oops.</p>
 {% endif %}
 
