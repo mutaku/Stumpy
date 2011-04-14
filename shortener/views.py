@@ -36,14 +36,15 @@ def detail(request,short):
 
 @login_required
 def submit(request,stump):
-	try:
-		stump_clean = bleach.clean(stump)
-		this_stump = smart_str(stump_clean)
+	stumpy_domain = smart_str(Site.objects.get_current().domain)
+	stump_clean = bleach.clean(stump)
+	this_stump = smart_str(stump_clean)
+	this_hash = hashlib.sha1(this_stump).hexdigest()
+	does_exist = stumps.objects.filter(hashurl=this_hash)
+	if not does_exist:
 		this_user = smart_str(request.user)
 		parsed_url = urlparse.urlparse(this_stump)
-		stumpy_domain = smart_str(Site.objects.get_current().domain)
 		if parsed_url.netloc != stumpy_domain:
-			this_hash = hashlib.sha1(this_stump).hexdigest()
 			s = stumps(longurl=this_stump,hashurl=this_hash,cookie=this_user)
 			s.save()
 			new_stump = stumps.objects.get(id=s.id)	
@@ -54,5 +55,8 @@ def submit(request,stump):
 			})
 		else:
 			return HttpResponse("Sly fox eats the poisoned rabbit.")
-	except:
-		raise Http404
+	else:
+		return render_to_response('stumpy/submit.html', {
+				'exist_stump': does_exist.get(),
+				'stumpy_domain': stumpy_domain
+			})
