@@ -7,6 +7,7 @@ p.booky {margin-left:20px;}
 p.booky a {padding:5px;text-decoration:none;color:gray;background:#F0F0F0;border:2px solid #E8E8E8;}
 ul {list-style-type:none;color:gray;font-size:12;}
 p.lister {margin:75 0 0 100;color:gray;font-size:12;}
+p.returnurl {margin:75 0 0 200;color:gray;font-size:12;}
 ul a,a.visited {padding:0 10 0 10;color:gray;text-decoration:none;font-weight:bold;}
 ul li:hover {color:0099FF;}
 li span {padding:0 10 0 10;}
