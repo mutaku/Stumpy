@@ -1,4 +1,4 @@
 *.swp
 *.pyc
 *~
-my_settings.py
+local_settings.py
