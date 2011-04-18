@@ -46,7 +46,7 @@ Once you have django installed and running, you can checkout the repo and get go
 # Sync the database to the models.
 	__python manage.py syncdb__
 # Fire up the server and navigate to /admin in your browser. Go to sites->sites and edit the domain name to match the domain you are using. This will initially be set to 'example.com'.
-	__python manage.py runserver_
+	__python manage.py runserver__
 
 h3. PRODUCTION RUNNING:
 
