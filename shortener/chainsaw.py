@@ -1,8 +1,4 @@
-##########################################################
-# chainsaw -
-# Some Cookie Methods 
-# not for security - merely for associating with a browser
-##########################################################
+#!/usr/bin/env python
 
 class CreateCookie():
 	"Generate a Cookie using given name"
