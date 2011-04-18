@@ -35,20 +35,16 @@ h3. INSTALLATION AND TESTING:
 See: http://docs.djangoproject.com/en/1.3/intro/install/
 Once you have django installed and running, you can checkout the repo and get going in three steps:
 # Setup a mysql database that stumpy can access.
-	**create database stumpy;
-	grant all on stumpy.* to 'SOMEUSER@localhost' identified by "SOMEPASS";
-	flush privilieges;**
-
+bq. create database stumpy;
+grant all on stumpy.* to 'SOMEUSER@localhost' identified by "SOMEPASS";
+flush privilieges;
 # Copy the local_settings.py.dist file to local_settings.py .
 	**cp local_settings.py.dist local_settings.py**
-
 # Generate your SECRET_KEY by running gimme_key.py .
 	**python gimme_key.py**
-
 # Edit the local_settings.py file and add in your appropriate database variables and your secret key generated above in step 3.
 # Sync the database to the models.
 	**python manage.py syncdb**
-
 # Fire up the server and navigate to /admin in your browser. Go to sites->sites and edit the domain name to match the domain you are using. This will initially be set to 'example.com'.
 	**python manage.py runserver**
 
