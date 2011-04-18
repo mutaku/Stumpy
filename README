@@ -34,9 +34,11 @@ Once you have django installed and running, you can checkout the repo and get go
 	> create database stumpy;
 	> grant all on stumpy.* to SOMEUSER@localhost identified by "SOMEPASS";
 	> flush privilieges;
-  2 - Copy the local_settings.py.dist file to local_settings.py 
-  3 - Edit the local_settings.py file and add in your appropriate database variables and your secret key and then sync the database to the models [python manage.py syncdb].
-  4 - Fire up the server [python manage.py runserver] and navigate to /admin in your browser. Go to sites->sites and edit the domain name to match the domain you are using. This will initially be set to 'example.com'.
+  2 - Copy the local_settings.py.dist file to local_settings.py .
+  3 - Generate your SECRET_KEY by running gimme_key.py [python gimme_key.py].
+  4 - Edit the local_settings.py file and add in your appropriate database variables and your secret key generated above in step 3.
+  5 - Sync the database to the models [python manage.py syncdb].
+  6 - Fire up the server [python manage.py runserver] and navigate to /admin in your browser. Go to sites->sites and edit the domain name to match the domain you are using. This will initially be set to 'example.com'.
 
 
 PRODUCTION RUNNING:
