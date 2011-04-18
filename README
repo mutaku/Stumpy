@@ -59,6 +59,8 @@ You will probably be able to see from the urls.py how to go about using Stumpy. 
 NOTES:
 A bookmarklet is ready to use and can be found by visiting the index page ("/") and dragging the 'stumpy it!' link to your bookmarks bar.
 
+To add additional users that may submit URLs, add the user via the admin interface. They do not need to have any admin interface abilities to simply login and and submit URLs.
+If you want a user to have permission to edit and delete urls (why?) you would have to enable those permissions in the user management in the admin interface.
 
 FAQ:
 [coming soon]
