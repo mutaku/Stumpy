@@ -1,9 +1,9 @@
 h1. STUMPy
-  _Mutaku URL Shortener_
+h3.Mutaku URL Shortener
 
 
-WHAT IS STUMPY?
-==================
+h3.WHAT IS STUMPY?
+
 STUMPy is a URL shortener written by xiao_haozi (Mutaku) using the django python web framework.
 
 
