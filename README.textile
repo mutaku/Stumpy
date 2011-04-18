@@ -1,6 +1,5 @@
-STUMPy
-=================
-  Mutaku URL Shortener
+h1. STUMPy
+  _Mutaku URL Shortener_
 
 
 WHAT IS STUMPY?
