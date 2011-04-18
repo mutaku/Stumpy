@@ -1,57 +1,57 @@
 h1. STUMPy
-h3.Mutaku URL Shortener
+
+h3. Mutaku URL Shortener
 
 
-h3.WHAT IS STUMPY?
+h3. WHAT IS STUMPY?
 
 STUMPy is a URL shortener written by xiao_haozi (Mutaku) using the django python web framework.
 
 
-WHY STUMPY?
-=================
+h3. WHY STUMPY?
+
 There are man url shorteners out there, and STUMPy does not do anything groundbreaking.
 However, there are several benefits that encouraged it's development:
-  - you keep all the data and can access it at your will
-  - you keep all the code and can access/change it at your will
-  - simple to use, simple to run, and simple code
-  - because of it's simplicity, it is easy to understand how url shorteners work and some of the possible optimizations
-  - uses the django framework which allows for easy expansion, management, and tweaking
-  - django also allows for a nice web UI for administration of all of the data
+* you keep all the data and can access it at your will
+* you keep all the code and can access/change it at your will
+* simple to use, simple to run, and simple code
+* because of it's simplicity, it is easy to understand how url shorteners work and some of the possible optimizations
+* uses the django framework which allows for easy expansion, management, and tweaking
+* django also allows for a nice web UI for administration of all of the data
 
 
-REQUIREMENTS:
-=================
+h3. REQUIREMENTS:
 
 {requirement [link for source]}
 
-- Python [http://www.python.org/getit/]
-- Django [see: http://docs.djangoproject.com/en/1.3/intro/install/]
-- HTML5LIB [http://code.google.com/p/html5lib/]
-- Bleach [https://github.com/jsocol/bleach]
+* Python [http://www.python.org/getit/]
+* Django [see: http://docs.djangoproject.com/en/1.3/intro/install/]
+* HTML5LIB [http://code.google.com/p/html5lib/]
+* Bleach [https://github.com/jsocol/bleach]
 
 
-INSTALLATION AND TESTING:
-=================
+h3. INSTALLATION AND TESTING:
+
 See: http://docs.djangoproject.com/en/1.3/intro/install/
 Once you have django installed and running, you can checkout the repo and get going in three steps:
-  1 - Setup a mysql database that stumpy can access.
-	> create database stumpy;
-	> grant all on stumpy.* to SOMEUSER@localhost identified by "SOMEPASS";
-	> flush privilieges;
-  2 - Copy the local_settings.py.dist file to local_settings.py .
-  3 - Generate your SECRET_KEY by running gimme_key.py [python gimme_key.py].
-  4 - Edit the local_settings.py file and add in your appropriate database variables and your secret key generated above in step 3.
-  5 - Sync the database to the models [python manage.py syncdb].
-  6 - Fire up the server [python manage.py runserver] and navigate to /admin in your browser. Go to sites->sites and edit the domain name to match the domain you are using. This will initially be set to 'example.com'.
+# Setup a mysql database that stumpy can access.
+	* create database stumpy;
+	* grant all on stumpy.* to SOMEUSER@localhost identified by "SOMEPASS";
+	* flush privilieges;
+# Copy the local_settings.py.dist file to local_settings.py .
+# Generate your SECRET_KEY by running gimme_key.py [python gimme_key.py].
+# Edit the local_settings.py file and add in your appropriate database variables and your secret key generated above in step 3.
+# Sync the database to the models [python manage.py syncdb].
+# Fire up the server [python manage.py runserver] and navigate to /admin in your browser. Go to sites->sites and edit the domain name to match the domain you are using. This will initially be set to 'example.com'.
 
 
-PRODUCTION RUNNING:
-=================
+h3. PRODUCTION RUNNING:
+
 See: http://docs.djangoproject.com/en/1.3/howto/deployment/
 
 
-USAGE:
-=================
+h3. USAGE:
+
 You will probably be able to see from the urls.py how to go about using Stumpy. Here's the rundown:
 [site]/ 		->	index view (recent stumps, popular stumps, and the bookmarklet)
 [site]/[shorturl] 	->	grab shorturl and redirect
@@ -62,20 +62,20 @@ You will probably be able to see from the urls.py how to go about using Stumpy. 
 *-> These views require authenticated_user and uses sessions
 
 
-NOTES:
-=================
+h3. NOTES:
+
 A bookmarklet is ready to use and can be found by visiting the index page ("/") and dragging the 'stumpy it!' link to your bookmarks bar.
 
 To add additional users that may submit URLs, add the user via the admin interface. They do not need to have any admin interface abilities to simply login and and submit URLs.
 If you want a user to have permission to edit and delete urls (why?) you would have to enable those permissions in the user management in the admin interface.
 
 
-FAQ:
-=================
+h3. FAQ:
+
 [coming soon]
 
 
-HELP:
-=================
+h3. HELP:
+
 Most of the information you might need can be found in the Django docs here: http://www.djangoproject.com/
 For Stumpy specific help, see: https://github.com/mutaku/Stumpy
