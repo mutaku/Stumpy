@@ -1,7 +1,8 @@
 
 # Django settings for Stumpy project.
 
-DEBUG = False
+# Set this to False when you are ready for production and have setup your webserver to handle serving the static files
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 # Local time zone for this installation. Choices can be found here:
