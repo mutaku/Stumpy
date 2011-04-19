@@ -1,11 +1,7 @@
 from django.db import models
 from django.core.exceptions import ValidationError
-import base62,hashlib
-
-
-class Chainsaw(models.Manager):
-	def cookie_count(self,term):
-		return self.filter(cookie__icontains=term).count()
+import base62
+import hashlib
 
 class stumps(models.Model):
 	longurl = models.URLField("Original URL",help_text="URL for shortening",max_length=2000,verify_exists=True)
@@ -15,7 +11,6 @@ class stumps(models.Model):
 	lastvisit = models.DateTimeField("Last visit timestamp",auto_now_add=True,editable=False,)
 	created = models.DateTimeField("Created timestamp",auto_now=True,editable=False)
 	cookie = models.CharField("Associated cookie",max_length=10,null=True,blank=True,editable=False)
-	objects = Chainsaw()
 
 	def createShortURL(self):
 		thisurl = self.longurl
