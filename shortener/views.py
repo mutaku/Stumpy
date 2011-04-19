@@ -29,10 +29,10 @@ def detail(request,short):
 	stump = get_object_or_404(stumps,shorturl=short_clean)
 	stump.hits += 1
 	stump.save()
-	# this is non template driven for now becuase it will soon simply cause a redirect to real link (longurl)
-	return HttpResponse("You used short link %s which is translating to %s" % (stump.shorturl,stump.longurl))
-	# this is the redirect to be used
-	#return redirect(stump.longurl)
+	# testing output, uncomment (and comment out redirect) if need to intercept for testing
+	#return HttpResponse("You used short link %s which is translating to %s" % (stump.shorturl,stump.longurl))
+	# this is the redirect to be used, comment out for testing if needed
+	return redirect(stump.longurl)
 
 @login_required
 def submit(request,stump):
