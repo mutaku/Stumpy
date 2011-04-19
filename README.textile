@@ -30,7 +30,7 @@ h3. REQUIREMENTS:
 * "Bleach":https://github.com/jsocol/bleach
 
 
-h3. INSTALLATION,SETUP, AND TESTING:
+h3. INSTALLATION, SETUP, AND TESTING:
 
 See: "Django Install":http://docs.djangoproject.com/en/1.3/intro/install/
 Once you have django installed and running, you can checkout the repo and get going in three steps:
