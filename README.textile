@@ -57,7 +57,7 @@ Additionally, ensure that you have set your proper FQDN through the admin interf
 I have included an example fastcgi script (stumpy.fcgi) that you may point to with your webserver to run Stumpy in a production setting.
 The following is an example of a stanza that you could use with Lighttpd to serve up Stumpy.
 
-bc.. $HTTP["host"] =~ "example.com" {
+bc. $HTTP["host"] =~ "example.com" {
   server.document-root = "/home/JohnDoe/Stumpy/"
   fastcgi.server = ( ".fcgi" =>
                      ( "localhost" => (
