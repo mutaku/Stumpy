@@ -35,18 +35,24 @@ h3. INSTALLATION, SETUP, AND TESTING:
 See: "Django Install":http://docs.djangoproject.com/en/1.3/intro/install/
 Once you have django installed and running, you can checkout the repo and test things out in a few steps.
 # Grab the latest release with git.
-	__git clone https://mutaku@github.com/mutaku/Stumpy.git__
+bc. git clone https://mutaku@github.com/mutaku/Stumpy.git
+
 # Setup a mysql database that stumpy can access.
-	__create database stumpy;grant all on stumpy.* to 'SOMEUSER@localhost' identified by "SOMEPASS";flush privilieges;__
+bc. create database stumpy;grant all on stumpy.* to 'SOMEUSER@localhost' identified by "SOMEPASS";flush privilieges;
+
 # Copy the local_settings.py.dist file to local_settings.py .
-	__cp local_settings.py.dist local_settings.py__
+bc. cp local_settings.py.dist local_settings.py
+
 # If you do not have a SECRET_KEY generated in Django you will need to generate one by running the keygen script and copy that key into your local_settings.py file in the next step. 
-	__python gimme_key.py__
+bc. python gimme_key.py
+
 # Edit the local_settings.py file and add in your appropriate database variables and your secret key you already had from django or the one you generated above.
 # Sync the database to the models.
-	__python manage.py syncdb__
+bc. python manage.py syncdb
+
 # Fire up the server and navigate to /admin in your browser. Go to sites->sites and edit the domain name to match the domain you are using. This will initially be set to 'example.com'.
-	__python manage.py runserver__
+bc. python manage.py runserver
+
 
 h3. PRODUCTION RUNNING:
 
