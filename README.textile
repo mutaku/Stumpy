@@ -54,6 +54,28 @@ See: "Deploying Django":http://docs.djangoproject.com/en/1.3/howto/deployment/
 Once you have your webserver setup to serve the static files, you can set DEBUG=False. Without doing so, static files will not be served up by Django in production mode (DEBUG=False).
 Additionally, ensure that you have set your proper FQDN through the admin interface as mentioned in the last step of the setup section.
 
+I have included an example fastcgi script (stumpy.fcgi) that you may point to with your webserver to run Stumpy in a production setting.
+The following is an example of a stanza that you could use with Lighttpd to serve up Stumpy.
+
+`
+$HTTP["host"] =~ "example.com" {
+  server.document-root = "/home/JohnDoe/Stumpy/"
+  fastcgi.server = ( ".fcgi" =>
+                     ( "localhost" => (
+			 "socket" => "/var/lib/lighttpd/stumpy-fastcgi.socket",
+                         "bin-path" => "/home/JohnDoe/Stumpy/stumpy.fcgi",
+                         "check-local" => "disable",
+                         "min-procs" => 2,
+			 "max-procs" => 4,
+                       )
+                     ),
+                   )
+  alias.url = ( "/static/admin"  => "/home/JohnDoe/django/contrib/admin/media/" )
+  url.rewrite-once = ( "^(/static/.*)$" => "$1",
+                       "^/favicon\.ico$" => "/static/favicon.ico",
+		       "^(/.*)$" => "/stumpy.fcgi$1" )
+}
+`
 
 h3. USAGE:
 
