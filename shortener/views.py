@@ -3,6 +3,7 @@ from django import forms
 from shortener.models import stumps
 from django.utils.encoding import smart_str
 from django.shortcuts import get_object_or_404,get_list_or_404,render_to_response,redirect
+from django.http import HttpResponseRedirect
 import hashlib
 import urlparse
 from django.db.models import Sum,Count
@@ -29,7 +30,7 @@ def detail(request,short):
 	stump = get_object_or_404(stumps,shorturl=short_clean)
 	stump.hits += 1
 	stump.save()
-	return redirect(stump.longurl)
+	return HttpResponseRedirect(stump.longurl)
 
 
 @login_required
