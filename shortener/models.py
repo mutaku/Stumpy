@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 import base62
 import hashlib
 
-class stumps(models.Model):
+class stump(models.Model):
 	longurl = models.URLField("Original URL",help_text="URL for shortening",max_length=2000,verify_exists=True)
 	hashurl = models.CharField("Hash of original URL",max_length=70,editable=False,unique=True)
 	shorturl = models.CharField("Shortened URL",max_length=15,null=True,blank=True,editable=False)
@@ -14,15 +14,15 @@ class stumps(models.Model):
 
 	def createShortURL(self):
 		thisurl = self.longurl
-		thisid = stumps.objects.get(longurl=thisurl).id
+		thisid = stump.objects.get(longurl=thisurl).id
 		theshorty = base62.Encode(thisid).string
-		stumps.objects.filter(id=thisid).update(shorturl=theshorty)
+		stump.objects.filter(id=thisid).update(shorturl=theshorty)
 
 	def __unicode__(self):
 		return u"%s ==> %s" %(self.long_to_less_long(),self.shorturl) 
 
 	def save(self, *args, **kwargs):
-		super(stumps, self).save(*args, **kwargs)
+		super(stump, self).save(*args, **kwargs)
 		if not self.shorturl:
 			self.createShortURL()
 
