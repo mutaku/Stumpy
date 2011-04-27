@@ -52,7 +52,7 @@ def submit(request,stump):
 	if not does_exist:
 		this_user = smart_str(request.user)
 		parsed_url = urlparse.urlparse(this_stump)
-		if not parsed_url.scheme"
+		if not parsed_url.scheme:
 			this_stump = "http://"+this_stump
 		if parsed_url.netloc != stumpy_domain:
 			s = stumps(longurl=this_stump,hashurl=this_hash,cookie=this_user)
