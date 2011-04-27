@@ -14,13 +14,12 @@ class stumps(models.Model):
 
 	def createShortURL(self):
 		thisurl = self.longurl
-		thisentry = stumps.objects.get(longurl=thisurl)
-		theid = thisentry.id
-		theshorty = base62.Encode(theid).string
-		stumps.objects.filter(id=theid).update(shorturl=theshorty)
+		thisid = stumps.objects.get(longurl=thisurl).id
+		theshorty = base62.Encode(thisid).string
+		stumps.objects.filter(id=thisid).update(shorturl=theshorty)
 
 	def __unicode__(self):
-		return u"%s ==> %s" %(self.longurl,self.shorturl) 
+		return u"%s ==> %s" %(self.long_to_less_long(),self.shorturl) 
 
 	def save(self, *args, **kwargs):
 		super(stumps, self).save(*args, **kwargs)
