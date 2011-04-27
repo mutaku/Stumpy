@@ -32,7 +32,7 @@ def detail(request,short):
 	return redirect(stump.longurl)
 
 
-#@login_required
+@login_required
 def submit(request,stump):
 	stumpy_domain = smart_str(Site.objects.get_current().domain)
 	stump_clean = bleach.clean(stump)
