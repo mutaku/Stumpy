@@ -46,17 +46,14 @@ def submit(request,stump):
 		stump_split[2] = "/"+stump_split[2]
 		this_stump = ''.join(stump_split)
 	############################################################
-	# Another hack - urls that don't have http(s)/ftp etc
-	#   are legit and get in but the redirect breaks?!
-	if not stump_split[1]:
-		this_stump = "http://"+this_stump
-	############################################################
 	############################################################
 	this_hash = hashlib.sha1(this_stump).hexdigest()
 	does_exist = stumps.objects.filter(hashurl=this_hash)
 	if not does_exist:
 		this_user = smart_str(request.user)
 		parsed_url = urlparse.urlparse(this_stump)
+		if not parsed_url.scheme"
+			this_stump = "http://"+this_stump
 		if parsed_url.netloc != stumpy_domain:
 			s = stumps(longurl=this_stump,hashurl=this_hash,cookie=this_user)
 			s.save()
