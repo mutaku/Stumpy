@@ -37,6 +37,10 @@ def submit(request,stump):
 	stumpy_domain = smart_str(Site.objects.get_current().domain)
 	stump_clean = bleach.clean(stump)
 	this_stump = smart_str(stump_clean)
+	stump_split = list(this_stump.partition(":")) 
+	if stump_split[1] and stump_split[2].startswith("/"):
+		stump_split[2] = "/"+stump_split[2]
+		this_stump = ''.join(stump_split) 
 	this_hash = hashlib.sha1(this_stump).hexdigest()
 	does_exist = stumps.objects.filter(hashurl=this_hash)
 	if not does_exist:
