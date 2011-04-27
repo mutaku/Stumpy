@@ -1,9 +1,9 @@
-from shortener.models import stumps
+from shortener.models import stump
 from django.contrib import admin
 import hashlib
 from django.utils.encoding import smart_str
 
-class stumpsAdmin(admin.ModelAdmin):
+class stumpAdmin(admin.ModelAdmin):
 	list_display = ('long_to_less_long','shorturl','hashurl','created','hits','cookie')
 	search_fields = ['longurl','cookie']
 	list_filter = ['created','lastvisit','cookie']	
@@ -14,7 +14,7 @@ class stumpsAdmin(admin.ModelAdmin):
 		obj.cookie = smart_str(request.user)
 		obj.save()
 
-admin.site.register(stumps,stumpsAdmin)
+admin.site.register(stump,stumpAdmin)
 
 
 
