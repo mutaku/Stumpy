@@ -15,11 +15,3 @@ class stumpAdmin(admin.ModelAdmin):
 		obj.save()
 
 admin.site.register(stump,stumpAdmin)
-
-
-
-
-
-
-
-

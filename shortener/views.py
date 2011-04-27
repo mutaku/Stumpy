@@ -29,13 +29,13 @@ def detail(request,short):
 	thisstump = get_object_or_404(stump,shorturl=short_clean)
 	thisstump.hits += 1
 	thisstump.save()
-	return redirect(stump.longurl)
+	return redirect(thisstump.longurl)
 
 
 @login_required
-def submit(request,stump):
+def submit(request,stumpurl):
 	stumpy_domain = smart_str(Site.objects.get_current().domain)
-	stump_clean = bleach.clean(stump)
+	stump_clean = bleach.clean(stumpurl)
 	this_stump = smart_str(stump_clean)
 	############################################################
 	############################################################
