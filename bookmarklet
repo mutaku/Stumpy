@@ -4,4 +4,4 @@ This is directly from the index template and is shown in the index view by defau
 
 Note: If you are using the link below, please be sure to replace {{ stumpy_domain }} with your actual domain. In the template, this is fed in by django.
 
-<a href="javascript:var d=document,w=window,e=w.getSelection,k=d.getSelection,x=d.selection,s=(e?e():(k)?k():(x?x.createRange().text:0)),f='{{  stumpy_domain  }}',l=escape(d.location),e=encodeURIComponent,u=f+'/&l='+l;a=function(){if(!w.open(u,'t','toolbar=0,resizable=1,scrollbars=1,status=1,width=300,height=100'))l.href=u;};if (/Firefox/.test(navigator.userAgent)) setTimeout(a, 0); else a();void(0)">&#8620;&nbsp;stumpy it!</a>
+javascript:(function(){w=window,d=document,t=escape(d.title),l=escape(d.location), w.open('http://{{ stumpy_domain }}/url/'+l,'t','status=1,scrollbars=1,location=0,resizable=1,menubar=0,width=400,height=200,toolbar=0'); })();
