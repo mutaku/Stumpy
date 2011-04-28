@@ -14,3 +14,5 @@ tr:hover {color:0099FF;}
 p.result {color:#303030;font-size:14px;}
 a,a.visited {text-decoration:none;font-weight:bold;}
 div.loginform {margin:0 0 0 150;}
+div.footer {margin:40 0 0 0;}
+div.footer p {text-align:center;font-size:12px;}
