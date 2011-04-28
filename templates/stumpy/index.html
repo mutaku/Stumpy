@@ -22,22 +22,29 @@
 
 {% if recent_stumps_list %}
     <p class=lister> fresh cut stumps</p>
-    <ul>
+    <table>
     {% for stump in recent_stumps_list %}
-        <li><a target=_blank href="/{{ stump.shorturl }}/">{{ stumpy_domain }}/{{ stump.shorturl }}</a>  <span>{{ stump.long_to_less_long }}</span></li>
+	<tr>
+		<td class="tablelink"><a target=_blank href="/{{ stump.shorturl }}/">{{ stumpy_domain }}/{{ stump.shorturl }}</a></td>
+		<td class="tabledesc">{{ stump.long_to_less_long }}</td>
+	</tr>
     {% endfor %}
-    </ul>
+    </table>
 {% else %}
     <p>No stumps are available.</p>
 {% endif %}
 
 {% if famous_stumps_list %}
     <p class=lister> famous stumps in history</p>
-    <ul>
+    <table>
     {% for stump in famous_stumps_list %}
-        <li><a target=_blank href="/{{ stump.shorturl }}/">{{ stumpy_domain }}/{{ stump.shorturl }}</a> <span>{{ stump.hits }}</span> <span>{{ stump.long_to_less_long }}</span></li>
-    {% endfor %}
-    </ul>
+        <tr>
+		<td class="tablelink"><a target=_blank href="/{{ stump.shorturl }}/">{{ stumpy_domain }}/{{ stump.shorturl }}</a></td>
+		<td class="tablehits">{{ stump.hits }}</td>
+		<td class="tabledesc">{{ stump.long_to_less_long }}</td>
+	</tr>
+	{% endfor %}
+    </table>
 {% else %}
     <p>No stumps are available.</p>
 {% endif %}
