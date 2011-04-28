@@ -10,7 +10,7 @@ class stump(models.Model):
 	hits = models.PositiveIntegerField("Number of visits",default=1,editable=False)
 	lastvisit = models.DateTimeField("Last visit timestamp",auto_now_add=True,editable=False,)
 	created = models.DateTimeField("Created timestamp",auto_now=True,editable=False)
-	cookie = models.CharField("Associated cookie",max_length=10,null=True,blank=True,editable=False)
+	cookie = models.CharField("Associated cookie",max_length=50,null=True,blank=True,editable=False)
 
 	def createShortURL(self):
 		thisurl = self.longurl
