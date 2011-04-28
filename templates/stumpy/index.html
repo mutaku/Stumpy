@@ -8,7 +8,7 @@
 			<p>Stumped? Drag the button (bookmarklet) below to your browser bookmark bar to save the stumpy bookmarklet. Whenever you want to shorten the page you are currently viewing, simply click 'stumpy it!' and you will get your shortened version.</p>
 
 {% if stumpy_domain %}
-			<p class=booky><a href="javascript:(function(){w=window,d=document,t=escape(d.title),l=escape(d.location), w.open('http://{{ stumpy_domain }}/url/'+l,'t','status=1,scrollbars=1,location=0,resizable=1,menubar=0,width=400,height=200,toolbar=0'); })();">&#8620;&nbsp;stumpy it!</a></p>
+			<p class=booky><a href="javascript:(function(){w=window,d=document,t=escape(d.title),l=escape(d.location), w.open('http://{{ stumpy_domain }}/url/'+l,'t','status=1,scrollbars=1,location=0,resizable=1,menubar=0,width=200,height=75,toolbar=0'); })();">&#8620;&nbsp;stumpy it!</a></p>
 {% else %}
 			<p class=booky>Can't grab domain for bookmarklet!</p>
 {% endif %}
