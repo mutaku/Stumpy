@@ -26,7 +26,7 @@ def index(request):
 
 def detail(request,short):
 	short_clean = bleach.clean(short)
-	thisstump = get_object_or_404(stump,shorturl=short_clean)
+	thisstump = get_object_or_404(stump,shorturl__contains=short_clean)
 	thisstump.hits += 1
 	thisstump.save()
 	return redirect(thisstump.longurl)
