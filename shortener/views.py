@@ -5,6 +5,7 @@ from django.utils.encoding import smart_str
 from django.shortcuts import get_object_or_404,get_list_or_404,render_to_response,redirect
 import hashlib
 import urlparse
+import xml.sax.saxutils as X
 from django.db.models import Sum,Count
 from django.contrib.sites.models import Site
 from django.contrib.auth.decorators import login_required
@@ -29,7 +30,8 @@ def detail(request,short):
 	thisstump = get_object_or_404(stump,shorturl__contains=short_clean)
 	thisstump.hits += 1
 	thisstump.save()
-	return redirect(thisstump.longurl)
+	go_url = X.unescape(smart_str(thisstump.longurl))
+	return redirect(go_url)
 
 
 @login_required
