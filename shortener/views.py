@@ -12,10 +12,10 @@ from django.contrib.auth.decorators import login_required
 import bleach
 
 def index(request):
-	my_stumps = False
-	if user.is_authenticated() and request.GET.has_key('s'):
+	my_stumps = ""
+	if request.user.is_authenticated() and request.GET.has_key('s'):
 		if request.GET.get('s') == 'mine':
-			my_stumps = stump.objects.get('cookie'=user).order_by('-id')
+			my_stumps = stump.objects.get(cookie=request.user).order_by('-id')
 	stumpy_domain = smart_str(Site.objects.get_current().domain)
 	stump_stats_num = stump.objects.all().count()
 	stump_stats_visits = stump.objects.aggregate(Sum('hits'))['%s__sum' % 'hits']
