@@ -14,10 +14,6 @@
 {% endif %}
 	</div>
 
-{% if user.is_authenticated %}
-	<p class=lister><a href='/?s=mine'>Show me my stumps!</a></p>
-{% endif %}
-
 {% if stump_stats_num and stump_stats_visits %}
 	<p class=lister>{{ stump_stats_num }} stump{{ stump_stats_num|pluralize }} tripped over {{ stump_stats_visits }} time{{ stump_stats_visits|pluralize }}</p>
 {% else %}
