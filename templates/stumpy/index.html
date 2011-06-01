@@ -14,6 +14,10 @@
 {% endif %}
 	</div>
 
+{% if user.is_authenticated and not my_stumps %}
+	<p class=lister><a href='/?s=mine'>Show me my stumps!</a></p>
+{% endif %}
+
 {% if stump_stats_num and stump_stats_visits %}
 	<p class=lister>{{ stump_stats_num }} stump{{ stump_stats_num|pluralize }} tripped over {{ stump_stats_visits }} time{{ stump_stats_visits|pluralize }}</p>
 {% else %}
@@ -24,10 +28,10 @@
     <p class=lister> fresh cut stumps</p>
     <table>
     {% for stump in recent_stumps_list %}
-	<tr>
-		<td class="tablelink"><a target=_blank href="/{{ stump.shorturl }}/">{{ stumpy_domain }}/{{ stump.shorturl }}</a></td>
-		<td class="tabledesc">{{ stump.long_to_less_long }}</td>
-	</tr>
+		<tr>
+			<td class="tablelink"><a target=_blank href="/{{ stump.shorturl }}/">{{ stumpy_domain }}/{{ stump.shorturl }}</a></td>
+			<td class="tabledesc">{{ stump.long_to_less_long }}</td>
+		</tr>
     {% endfor %}
     </table>
 {% else %}
@@ -39,14 +43,27 @@
     <table>
     {% for stump in famous_stumps_list %}
         <tr>
-		<td class="tablelink"><a target=_blank href="/{{ stump.shorturl }}/">{{ stumpy_domain }}/{{ stump.shorturl }}</a></td>
-		<td class="tablehits">{{ stump.hits }}</td>
-		<td class="tabledesc">{{ stump.long_to_less_long }}</td>
-	</tr>
+			<td class="tablelink"><a target=_blank href="/{{ stump.shorturl }}/">{{ stumpy_domain }}/{{ stump.shorturl }}</a></td>
+			<td class="tablehits">{{ stump.hits }}</td>
+			<td class="tabledesc">{{ stump.long_to_less_long }}</td>
+		</tr>
 	{% endfor %}
     </table>
 {% else %}
     <p>No stumps are available.</p>
+{% endif %}
+
+{% if my_stumps %}
+	<p class=lister> stumps cut by you</p>
+	<table>
+	{% for stump in my_stumps %}
+        <tr>
+			<td class="tablelink"><a target=_blank href="/{{ stump.shorturl }}/">{{ stumpy_domain }}/{{ stump.shorturl }}</a></td>
+			<td class="tablehits">{{ stump.hits }}</td>
+			<td class="tabledesc">{{ stump.long_to_less_long }}</td>
+		</tr>	
+	{% endfor %}
+	</table>
 {% endif %}
 
 {% endblock %}
