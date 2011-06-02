@@ -12,9 +12,9 @@ from django.contrib.auth.decorators import login_required
 import bleach
 
 def index(request):
-#	my_stumps = ""
-#	if request.user.is_authenticated():
-#		my_stumps = stump.objects.get(cookie=smart_str(request.user)).order_by('-id')
+	my_stumps = ""
+	if request.user.is_authenticated():
+		my_stumps = stump.objects.filter(cookie__iexact=request.user).order_by('-id')
 	stumpy_domain = smart_str(Site.objects.get_current().domain)
 	stump_stats_num = stump.objects.all().count()
 	stump_stats_visits = stump.objects.aggregate(Sum('hits'))['%s__sum' % 'hits']
@@ -22,7 +22,7 @@ def index(request):
 	famous_stumps_list = stump.objects.all().order_by('-hits')[:5]
 	return render_to_response('stumpy/index.html', {
 		'stumpy_domain': stumpy_domain,
-#		'my_stumps': my_stumps,
+		'my_stumps': my_stumps,
 		'recent_stumps_list': recent_stumps_list, 
 		'famous_stumps_list': famous_stumps_list,
 		'stump_stats_num': stump_stats_num,
@@ -43,16 +43,11 @@ def submit(request,stumpurl):
 	stumpy_domain = smart_str(Site.objects.get_current().domain)
 	stump_clean = bleach.clean(stumpurl)
 	this_stump = smart_str(stump_clean)
-	############################################################
-	############################################################
-	# This code portion is temporary hack for // -> / 
-	#   it will be removed once I have it fixed legit
+	# This code portion is temporary hack for // -> / .... this is a wsgi issue
 	stump_split = list(this_stump.partition(":")) 
 	if stump_split[1] and stump_split[2].startswith("/"):
 		stump_split[2] = "/"+stump_split[2]
 		this_stump = ''.join(stump_split)
-	############################################################
-	############################################################
 	this_hash = hashlib.sha1(this_stump).hexdigest()
 	does_exist = stump.objects.filter(hashurl=this_hash)
 	if not does_exist:
