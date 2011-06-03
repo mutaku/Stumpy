@@ -1,7 +1,0 @@
-Here is the stumpy bookmarklet link code.
-You can use this link to post a bookmarklet button that can be dragged into a browser toolbar and so forth.
-This is directly from the index template and is shown in the index view by default.
-
-Note: If you are using the link below, please be sure to replace {{ stumpy_domain }} with your actual domain. In the template, this is fed in by django.
-
-javascript:(function(){w=window,d=document,t=encodeURIComponent(d.title),l=escape(d.location), w.open('http://{{ stumpy_domain }}/url/'+l,'t','status=1,scrollbars=1,location=0,resizable=1,menubar=0,width=200,height=75,toolbar=0'); })();

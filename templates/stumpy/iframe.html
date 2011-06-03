@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if my_stumps %}
+	<p class=lister> stumps cut by you</p>
+	<table>
+	{% for stump in my_stumps %}
+        <tr>
+			<td class="tablelink"><a target=_blank href="/{{ stump.shorturl }}/">{{ stumpy_domain }}/{{ stump.shorturl }}</a></td>
+			<td class="tablehits">{{ stump.hits }}</td>
+			<td class="tabledesc">{{ stump.long_to_less_long }}</td>
+		</tr>	
+	{% endfor %}
+	</table>
+{% endif %}
+
+{% endblock %}

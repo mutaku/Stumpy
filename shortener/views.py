@@ -11,6 +11,7 @@ from django.contrib.sites.models import Site
 from django.contrib.auth.decorators import login_required
 import bleach
 
+
 def index(request):
 	my_stumps = ""
 	if request.user.is_authenticated():
@@ -28,6 +29,14 @@ def index(request):
 		'stump_stats_num': stump_stats_num,
 		'stump_stats_visits': stump_stats_visits
 	})	
+
+
+@login_required
+def iframer(request):
+	my_stumps = stump.objects.filter(cookie__iexact=request.user).order_by('-id')
+	return render_to_response('stumpy/iframe.html', {
+			'my_stumpys': my_stumps,
+		})	
 
 def detail(request,short):
 	short_clean = bleach.clean(short)
