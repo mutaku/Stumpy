@@ -21,7 +21,7 @@ urlpatterns = patterns('',
     
     # show the index from /
     url(r'^$', 'shortener.views.index'),
-	# iframer bookmarklet
+    # iframer bookmarklet
     url(r'^iframer/$', 'shortener.views.iframer'),
     # get a url for redirection /shorty
     url(r'^(?P<short>[0-9a-zA-Z]+)/$', 'shortener.views.detail'),
