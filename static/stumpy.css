@@ -4,10 +4,9 @@ h1 {color:#303030;}
 h2 {margin:20 0 0 20;}
 div.sub-info {margin:75 150 0 0;}
 p.booky {margin-left:20px;}
-p.booky a {padding:5px;text-decoration:none;color:#303030;background:#F0F0F0;border:2px solid #E8E8E8;}
+p.booky a {padding:5px;margin:0 10 0 10;text-decoration:none;color:#303030;background:#F0F0F0;border:2px solid #E8E8E8;}
 table {color:#303030;font-size:14;}
 p.lister {margin:75 0 0 75;color:#303030;font-size:14;}
-p.lister a {margin:0 10 0 10;}
 p.returnurl {margin:75 0 0 200;color:#303030;font-size:14;}
 table td {padding:10px 10px 0px 10px;}
 td.tablelink a,a.visited {padding:0 10 0 10;color:#303030;text-decoration:none;font-weight:bold;}
