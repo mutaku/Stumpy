@@ -15,6 +15,7 @@ function closer() {
 }
 
 function runthis() {
+// script modified from : http://iamnotagoodartist.com/stuff/wikiframe.js
 	if ($("#stumpyframe").length == 0) {
 		$("body").append("\
 			<div id='stumpyframe'>\
