@@ -2,7 +2,7 @@
 # Django settings for Stumpy project.
 
 # Set this to False when you are ready for production and have setup your webserver to handle serving the static files
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 # This is necessary for lighty setups to use {% url %} correctly
@@ -93,6 +93,10 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     'templates/',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+	'django.contrib.auth.context_processors.auth'
 )
 
 INSTALLED_APPS = (

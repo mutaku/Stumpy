@@ -1,13 +1,34 @@
-{% extends "base.html" %}
+{% extends "modifiedbase.html" %}
 
 {% block content %}
 
 {% if my_stumps %}
-	<p class=lister> stumps cut by you</p>
+	<script type="text/javascript" src="http://{{ stumpy_domain }}/static/ZeroClipboard.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+	<script type="text/javascript"> 
+ 		jQuery(document).ready(function($) {
+			$(".copyable").each(function () {
+					ZeroClipboard.setMoviePath( 'http://{{ stumpy_domain }}/static/ZeroClipboard.swf' );
+					var clip = new ZeroClipboard.Client();
+					var linkage = $(this).attr("href");
+					var thisid = $(this).attr("id");
+					clip.glue(thisid);	
+					clip.setText(linkage);
+					clip.addEventListener('complete', function(client, text) {
+                					//alert("Copied text to clipboard:\n" + text);
+            						$('#stumpyframe_veil p').text("Copied to clipboard: " + text).show();
+						});
+				});
+			})
+	</script>
+	<script type="text/javascript" src="js-file-doesnt-exists-404.js"></script>
+	
+	<p class=headline>{{ username }}'s Stump Harvest</p>
+	<p class=subheadline>Clicking a stump will copy the stump to your clipboard. You can then paste that into your page or conversation. [Uses flash]</p>
 	<table>
 	{% for stump in my_stumps %}
         <tr>
-			<td class="tablelink"><a target=_blank href="/{{ stump.shorturl }}/">{{ stumpy_domain }}/{{ stump.shorturl }}</a></td>
+			<td class="tablelink"><a class=copyable target=_blank id={{ stump.shorturl }} href="http://{{ stumpy_domain }}/{{ stump.shorturl }}/">{{ stumpy_domain }}/{{ stump.shorturl }}</span></td>
 			<td class="tablehits">{{ stump.hits }}</td>
 			<td class="tabledesc">{{ stump.long_to_less_long }}</td>
 		</tr>	

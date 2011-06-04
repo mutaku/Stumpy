@@ -33,9 +33,13 @@ def index(request):
 
 @login_required
 def iframer(request):
-	my_stumps = stump.objects.filter(cookie__iexact=request.user).order_by('-id')
+	username = request.user
+	my_stumps = stump.objects.filter(cookie__iexact=username).order_by('-id')
+	stumpy_domain = smart_str(Site.objects.get_current().domain)
 	return render_to_response('stumpy/iframe.html', {
-			'my_stumpys': my_stumps,
+			'stumpy_domain': stumpy_domain,
+			'username': username,
+			'my_stumps': my_stumps,
 		})	
 
 def detail(request,short):

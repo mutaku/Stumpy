@@ -1,0 +1,14 @@
+body {padding:15px;font-family:"courier";color:#303030;}
+table {color:#303030;font-size:14;}
+p.lister {margin:75 0 0 75;color:#303030;font-size:14;}
+p.returnurl {margin:75 0 0 200;color:#303030;font-size:14;}
+table td {padding:10px 10px 0px 10px;}
+td.tablelink a,a.visited {padding:0 10 0 10;color:#303030;text-decoration:none;font-weight:bold;}
+tr:hover {color:0099FF;}
+p.result {color:#303030;font-size:14px;}
+a,a.visited {text-decoration:none;font-weight:bold;}
+div.loginform {margin:0 0 0 150;}
+div.footer {margin:40 0 0 -15;}
+div.footer p {margin:0;padding:0;text-align:center;font-size:12px;}
+p.headline {color:#303030;font-size:18px;}
+p.subheadline {font-style:italic;font-size:14px;color:#303030;}

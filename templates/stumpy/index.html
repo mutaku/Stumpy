@@ -9,8 +9,8 @@
 
 {% if stumpy_domain %}
 			<p class=booky>
-				<a href="javascript:(function(){document.body.appendChild(document.createElement('script')).src="/static/bookmarklet.js';})();">&#8620;&nbsp;Stumpy it!</a>
-				<a href="javascript:(function(){document.body.appendChild(document.createElement('script')).src="/static/iframer.js';})();">&#8620;&nbsp;Harvest Stumps!</a>
+				<a href="javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://{{ stumpy_domain }}/static/bookmarklet.js';})();">&#8620;&nbsp;Stumpy it!</a>
+				<a href="javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://{{ stumpy_domain }}/static/iframer.js';})();">&#8620;&nbsp;Harvest Stumps!</a>
 			</p>
 {% else %}
 			<p class=booky>Can't grab domain for bookmarklet!</p>

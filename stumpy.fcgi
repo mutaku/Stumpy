@@ -8,5 +8,6 @@ os.environ['PYTHON_EGG_CACHE'] = "/tmp/"
 os.environ['DJANGO_SETTINGS_MODULE'] = "settings"
 
 from django.core.servers.fastcgi import runfastcgi
-runfastcgi(["method=threaded", "daemonize=false"])
+runfastcgi(["method=threaded", "daemonize=false", "debug=1"])
 
+ 
