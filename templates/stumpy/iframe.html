@@ -8,16 +8,16 @@
 	<script type="text/javascript"> 
  		jQuery(document).ready(function($) {
 			$(".copyable").each(function () {
-					ZeroClipboard.setMoviePath( 'http://{{ stumpy_domain }}/static/ZeroClipboard.swf' );
-					var clip = new ZeroClipboard.Client();
-					var linkage = $(this).attr("href");
-					var thisid = $(this).attr("id");
-					clip.glue(thisid);	
-					clip.setText(linkage);
-					clip.addEventListener('complete', function(client, text) {
-                					//alert("Copied text to clipboard:\n" + text);
-            						$('#stumpyframe_veil p').text("Copied to clipboard: " + text).show();
-						});
+				//	ZeroClipboard.setMoviePath( 'http://{{ stumpy_domain }}/static/ZeroClipboard.swf' );
+				//	var clip = new ZeroClipboard.Client();
+				//	var linkage = $(this).attr("href");
+				//	var thisid = $(this).attr("id");
+				//	clip.glue(thisid);	
+				//	clip.setText(linkage);
+				//	clip.addEventListener('complete', function(client, text) {
+                		//			//alert("Copied text to clipboard:\n" + text);
+            			//			$('#stumpyframe_veil p').text("Copied to clipboard: " + text).show();
+				//		});
 				});
 			})
 	</script>
