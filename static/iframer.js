@@ -27,7 +27,7 @@ function runthis() {
 					#stumpyframe {z-index: 850;}\
 					#stumpyframe_veil { display: none; position: fixed; width: 100%; height: 100%; top: 0; left: 0; cursor: pointer; z-index: 900; }\
 					#stumpyframe_veil p { color: black; font: normal normal bold 20px/20px Helvetica, sans-serif; position: absolute; top: 50%; left: 50%; width: 28em; margin: -10px auto 0 -5em; text-align: center; }\
-					#stumpyframe iframe { display: none; position: fixed; top: 0; left: 0; width: 40em; height: 100%; z-index: 999; border: 10px solid #ccc; background: white; margin: -5px 0 0 -5px; }\
+					#stumpyframe iframe { display: none; position: fixed; top: 0; left: 0; width: 50em; height: 100%; z-index: 999; border: 10px solid #ccc; background: white; margin: -5px 0 0 -5px; }\
 				</style>\
 			</div>");
 			$("#stumpyframe_veil").fadeIn(500);
