@@ -9,6 +9,7 @@
 
 {% if stumpy_domain %}
 			<p class=booky>
+				<script>var DOMAIN = "{{ stumpy_domain }}";</script>
 				<a href="javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://{{ stumpy_domain }}/static/bookmarklet.js';})();">&#8620;&nbsp;Stumpy it!</a>
 				<a href="javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://{{ stumpy_domain }}/static/iframer.js';})();">&#8620;&nbsp;Harvest Stumps!</a>
 			</p>

@@ -22,7 +22,7 @@ function runthis() {
 				<div id='stumpyframe_veil' style=''>\
 					<p>Harvesting your Stumps! ...</p>\
 				</div>\
-				<iframe src='http://t04u.be/iframer/' onload=\"$('#stumpyframe iframe').animate({width:'toggle'},500);$('#stumpyframe_veil p').hide(500);\">Enable iFrames.</iframe>\
+				<iframe src='"+DOMAIN+"/iframer/' onload=\"$('#stumpyframe iframe').animate({width:'toggle'},500);$('#stumpyframe_veil p').hide(500);\">Enable iFrames.</iframe>\
 				<style type='text/css'>\
 					#stumpyframe {z-index: 850;}\
 					#stumpyframe_veil { display: none; position: fixed; width: 100%; height: 100%; top: 0; left: 0; cursor: pointer; z-index: 900; }\
