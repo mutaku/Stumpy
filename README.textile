@@ -83,7 +83,7 @@ You will probably be able to see from the urls.py how to go about using Stumpy. 
 * [site]/[shorturl] 	->	grab shorturl and redirect
 * [site]/register		->	register new user [for users - admin can add through admin interface]
 * [site]/admin 		*->	admin interface 
-* [site]/url/[longurl] 	*->	shorten url [this is how the bookmarklet does it] [needs to be escaped if not using bookmarklet]
+* [site]/url/?l=[longurl] 	*->	shorten url [this is how the bookmarklet does it] [needs to be escaped if not using bookmarklet]
 
 *-> These views require authenticated_user and uses sessions
 
