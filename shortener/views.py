@@ -52,35 +52,39 @@ def detail(request,short):
 
 
 @login_required
-def submit(request,stumpurl):
-	stumpy_domain = smart_str(Site.objects.get_current().domain)
-	stump_clean = bleach.clean(stumpurl)
-	this_stump = smart_str(stump_clean)
-	# This code portion is temporary hack for // -> / .... this is a wsgi issue
-	stump_split = list(this_stump.partition(":")) 
-	if stump_split[1] and stump_split[2].startswith("/"):
-		stump_split[2] = "/"+stump_split[2]
-		this_stump = ''.join(stump_split)
-	this_hash = hashlib.sha1(this_stump).hexdigest()
-	does_exist = stump.objects.filter(hashurl=this_hash)
-	if not does_exist:
-		this_user = smart_str(request.user)
-		parsed_url = urlparse.urlparse(this_stump)
-		if not parsed_url.scheme:
-			this_stump = "http://"+this_stump
-		if parsed_url.netloc != stumpy_domain:
-			s = stump(longurl=this_stump,hashurl=this_hash,cookie=this_user)
-			s.save()
-			new_stump = stump.objects.get(id=s.id)	
-			stumpy_domain = smart_str(Site.objects.get_current().domain)
-			return render_to_response('stumpy/submit.html', {
-				'new_stump': new_stump,
-				'stumpy_domain': stumpy_domain
-			})
+def submit(request):
+	if request.method == 'GET' and request.GET.has_key('l'):
+		stumpy_domain = smart_str(Site.objects.get_current().domain)
+		stump_clean = bleach.clean(request.GET.get('l'))
+		this_stump = smart_str(stump_clean)
+		# We shouldn't need the below hack any longer since we now use get method 
+		## This code portion is temporary hack for // -> / .... this is a wsgi issue
+		#stump_split = list(this_stump.partition(":")) 
+		#if stump_split[1] and stump_split[2].startswith("/"):
+		#	stump_split[2] = "/"+stump_split[2]
+		#	this_stump = ''.join(stump_split)
+		this_hash = hashlib.sha1(this_stump).hexdigest()
+		does_exist = stump.objects.filter(hashurl=this_hash)
+		if not does_exist:
+			this_user = smart_str(request.user)
+			parsed_url = urlparse.urlparse(this_stump)
+			if not parsed_url.scheme:
+				this_stump = "http://"+this_stump
+			if parsed_url.netloc != stumpy_domain:
+				s = stump(longurl=this_stump,hashurl=this_hash,cookie=this_user)
+				s.save()
+				new_stump = stump.objects.get(id=s.id)	
+				stumpy_domain = smart_str(Site.objects.get_current().domain)
+				return render_to_response('stumpy/submit.html', {
+					'new_stump': new_stump,
+					'stumpy_domain': stumpy_domain
+				})
+			else:
+				return HttpResponse("Sly fox eats the poisoned rabbit.")
 		else:
-			return HttpResponse("Sly fox eats the poisoned rabbit.")
+			return render_to_response('stumpy/submit.html', {
+					'exist_stump': does_exist.get(),
+					'stumpy_domain': stumpy_domain
+				})
 	else:
-		return render_to_response('stumpy/submit.html', {
-				'exist_stump': does_exist.get(),
-				'stumpy_domain': stumpy_domain
-			})
+		return HttpResponse("Sly fox eats the poisoned rabbit.")
