@@ -26,6 +26,6 @@ urlpatterns = patterns('',
     # get a url for redirection /shorty
     url(r'^(?P<short>[0-9a-zA-Z]+)/$', 'shortener.views.detail'),
     # send a url to be shortened from /url/someencodedurl
-    url(r'^url/$', 'shortener.views.submit'),
+    url(r'^url/\d+$', 'shortener.views.submit'),
 
 )
